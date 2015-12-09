@@ -6,6 +6,8 @@
 
 class String
 {
+friend bool operator < (const String & lhs, const String & rhs);
+friend bool operator == (const String & lhs, const String & rhs);
 friend std::ostream & operator << (std::ostream & os, const String & s);
 friend std::istream & operator >> (std::istream & is, String & s);
 
@@ -32,6 +34,12 @@ private:
 };
 const String operator + (const String & lhs, const String & rhs);
 const String operator + (const String & lhs, const char * s);
+inline bool operator < (const String & lhs, const String & rhs) { return (strcmp(lhs.str_, rhs.str_) < 0); }
+inline bool operator > (const String & lhs, const String & rhs) { return rhs < lhs; }
+inline bool operator <= (const String & lhs, const String & rhs) { return !(lhs > rhs); }
+inline bool operator >= (const String & lhs, const String & rhs) { return !(lhs < rhs); }
+inline bool operator == (const String & lhs, const String & rhs) { return (strcmp(lhs.str_, rhs.str_) == 0); }
+inline bool operator != (const String & lhs, const String & rhs) { return !(lhs == rhs); }
 std::ostream & operator << (std::ostream & os, const String & s);
 std::istream & operator >> (std::istream & is, String & s);
 
