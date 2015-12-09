@@ -21,10 +21,7 @@ void String::swap(String & other)
     using std::swap;
     swap(str_, other.str_);
     swap(size_, other.size_);
-    if(capacity_<other.capacity_)
-        capacity_=other.size_;
-    else
-        other.capacity_=size_;
+    swap(capacity_, other.capacity_);
 }
 
 String & String::operator = (const char * s)
