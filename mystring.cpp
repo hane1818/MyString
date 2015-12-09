@@ -66,6 +66,13 @@ String & String::operator += (const String & s)
     return (*this);
 }
 
+const String String::operator + (const String & s) const
+{
+    String tmp(*this);
+    tmp+=s;
+    return tmp;
+}
+
 std::ostream & operator << (std::ostream & os, const String & s)
 {
     if(s.str_)
