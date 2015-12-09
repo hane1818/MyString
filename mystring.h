@@ -37,6 +37,7 @@ private:
 };
 const String operator + (const String & lhs, const String & rhs);
 const String operator + (const String & lhs, const char * rhs);
+const String operator + (const String & lhs, char rhs);
 inline bool operator < (const String & lhs, const String & rhs) { return (strcmp(lhs.str_, rhs.str_) < 0); }
 inline bool operator > (const String & lhs, const String & rhs) { return rhs < lhs; }
 inline bool operator <= (const String & lhs, const String & rhs) { return !(lhs > rhs); }

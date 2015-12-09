@@ -71,8 +71,8 @@ String & String::operator = (char c)
     else
     {
         clear();
-        str[size_++]=c;
-        str[size_]='\0';
+        str_[size_++]=c;
+        str_[size_]='\0';
     }
 
     return (*this);
@@ -123,6 +123,13 @@ const String operator + (const String & lhs, const String & rhs)
 }
 
 const String operator + (const String & lhs, const char * rhs)
+{
+    String tmp(lhs);
+    tmp+=rhs;
+    return tmp;
+}
+
+const String operator + (const String & lhs, char rhs)
 {
     String tmp(lhs);
     tmp+=rhs;
