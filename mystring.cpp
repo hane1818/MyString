@@ -1,19 +1,14 @@
 #include "mystring.h"
 
-String::String(const char * s)
+String::String(const char * s, int size)
 {
-    size_=strlen(s);
+    if(size != -1)
+        size_=size;
+    else
+        size_=strlen(s);
     capacity_=size_;
     str_=new char[size_+1];
     strcpy(str_, s);
-}
-
-String::String(const String & s)
-{
-    size_=s.size_;
-    capacity_=capacity_;
-    str_=new char[size_+1];
-    strcpy(str_, s.str_);
 }
 
 void String::swap(String & other)
