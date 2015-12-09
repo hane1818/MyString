@@ -27,6 +27,7 @@ public:
         return const_cast<char &>(static_cast<const String &>(*this)[i]); }
     String & operator = (String & str);
     String & operator = (const char * s);
+    String & operator = (char c);
     String & operator += (const String & str);
     String & operator += (const char * s);
     String & operator += (char c);

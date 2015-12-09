@@ -61,6 +61,23 @@ String & String::operator = (const char * s)
     return (*this);
 }
 
+String & String::operator = (char c)
+{
+    if(!capacity_)
+    {
+        String tmp(c);
+        this->swap(tmp);
+    }
+    else
+    {
+        clear();
+        str[size_++]=c;
+        str[size_]='\0';
+    }
+
+    return (*this);
+}
+
 String & String::operator += (const String & str)
 {
     if(capacity_ > (size_+str.size_+1))
