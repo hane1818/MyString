@@ -23,7 +23,7 @@ public:
     void clear() { size_=0; str_[0]='\0'; }
     void swap(String & other);
     String & operator = (const char * s);
-    String & operator = (String s);
+    String & operator = (String & s);
 private:
     char *str_=nullptr;
     std::size_t size_=0, capacity_=0;

@@ -26,8 +26,15 @@ void String::swap(String & other)
 
 String & String::operator = (const char * s)
 {
-    String tmp(s);
-    this->swap(tmp);
+    std::size_t len=strlen(s);
+    if(len>capacity_)
+    {
+        String tmp(s);
+        this->swap(tmp);
+    }
+    else
+        strcpy(str_,s);
+
     return (*this);
 }
 
