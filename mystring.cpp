@@ -56,8 +56,8 @@ String & String::operator += (const String & str)
         if(tmp)
         {
             strcpy(tmp, str_);
-            delete str_;
-            str_=tmp;
+            std::swap(tmp, str_);
+            delete tmp;
             strcat(str_, str.str_);
             size_+=str.size_;
             capacity_=size_;
@@ -71,6 +71,25 @@ String & String::operator += (const char * s)
     String tmp(s);
     (*this)+=tmp;
     return (*this);
+}
+
+String & String::operator += (char c)
+{
+    if(capacity_<size_+1)
+    {
+        char *tmp = new char [size_+1];
+        if(tmp)
+        {
+            strcpy(tmp, str_);
+            std::swap(tmp, str_);
+            delete tmp;
+            str_[size_++]=c;
+            str_[size_]='\0';
+            capacity_=size_;
+        }
+    }
+    else
+        str_[size_++]=c;
 }
 
 const String operator + (const String & lhs, const String & rhs)

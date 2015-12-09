@@ -28,6 +28,7 @@ public:
     String & operator = (const char * s);
     String & operator += (const String & str);
     String & operator += (const char * s);
+    String & operator += (char c);
 private:
     char *str_=nullptr;
     std::size_t size_=0, capacity_=0;
