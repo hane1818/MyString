@@ -2,23 +2,30 @@
 
 String::String(const char * s, int size)
 {
-    if(size != -1)
+    if(size == -1)
+        size=strlen(s);
+    str_=new char[size+1];
+    if(str_)
+    {
         size_=size;
+        strcpy(str_, s);
+        capacity_=size_;
+    }
     else
-        size_=strlen(s);
-    capacity_=size_;
-    str_=new char[size_+1];
-    strcpy(str_, s);
+        size_=0;
 }
 
 String::String(char c)
 {
-    str_=new char[2];
-    if(str_)
+    if(c!='\0')
     {
-        str_[size_++]=c;
-        str_[size_]='\0';
-        capacity_=size_;
+        str_=new char[2];
+        if(str_)
+        {
+            str_[size_++]=c;
+            str_[size_]='\0';
+            capacity_=size_;
+        }
     }
 }
 
@@ -101,6 +108,8 @@ String & String::operator += (char c)
     }
     else
         str_[size_++]=c;
+
+    return (*this);
 }
 
 const String operator + (const String & lhs, const String & rhs)
