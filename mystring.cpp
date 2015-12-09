@@ -33,7 +33,10 @@ String & String::operator = (const char * s)
         this->swap(tmp);
     }
     else
+    {
         strcpy(str_,s);
+        size_=len;
+    }
 
     return (*this);
 }
