@@ -19,6 +19,13 @@ void String::swap(String & other)
     swap(capacity_, other.capacity_);
 }
 
+String & String::operator = (String & s)
+{
+    if(this == &s) return (*this);
+    this->swap(s);
+    return (*this);
+}
+
 String & String::operator = (const char * s)
 {
     std::size_t len=strlen(s);
@@ -33,13 +40,6 @@ String & String::operator = (const char * s)
         size_=len;
     }
 
-    return (*this);
-}
-
-String & String::operator = (String & s)
-{
-    if(this == &s) return (*this);
-    this->swap(s);
     return (*this);
 }
 

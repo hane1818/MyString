@@ -16,14 +16,15 @@ public:
     ~String() { delete [] str_; };
     std::size_t size() { return size_; }
     const char * c_str() { return str_; }
+    void clear() { size_=0; str_[0]='\0'; }
+    void swap(String & other);
     const char & operator [] (std::size_t i) const { return str_[i]; }
     char & operator [] (std::size_t i) {
         return const_cast<char &>(static_cast<const String &>(*this)[i]); }
-    void operator += (const String & s);
-    void clear() { size_=0; str_[0]='\0'; }
-    void swap(String & other);
-    String & operator = (const char * s);
     String & operator = (String & s);
+    String & operator = (const char * s);
+    String & operator += (const String & s);
+    const String operator + (const String & s) const;
 private:
     char *str_=nullptr;
     std::size_t size_=0, capacity_=0;
