@@ -19,10 +19,10 @@ void String::swap(String & other)
     swap(capacity_, other.capacity_);
 }
 
-String & String::operator = (String & s)
+String & String::operator = (String & str)
 {
-    if(this == &s) return (*this);
-    this->swap(s);
+    if(this == &str) return (*this);
+    this->swap(str);
     return (*this);
 }
 
@@ -43,23 +43,23 @@ String & String::operator = (const char * s)
     return (*this);
 }
 
-String & String::operator += (const String & s)
+String & String::operator += (const String & str)
 {
-    if(capacity_ > (size_+s.size_+1))
+    if(capacity_ > (size_+str.size_+1))
     {
-        strcat(str_, s.str_);
-        size_+=s.size_;
+        strcat(str_, str.str_);
+        size_+=str.size_;
     }
     else
     {
-        char *tmp = new char[size_+s.size_+1];
+        char *tmp = new char[size_+str.size_+1];
         if(tmp)
         {
             strcpy(tmp, str_);
             delete str_;
             str_=tmp;
-            strcat(str_, s.str_);
-            size_+=s.size_;
+            strcat(str_, str.str_);
+            size_+=str.size_;
             capacity_=size_;
         }
     }
@@ -80,10 +80,10 @@ const String operator + (const String & lhs, const String & rhs)
     return tmp;
 }
 
-const String operator + (const String & lhs, const char * s)
+const String operator + (const String & lhs, const char * rhs)
 {
     String tmp(lhs);
-    tmp+=s;
+    tmp+=rhs;
     return tmp;
 }
 
