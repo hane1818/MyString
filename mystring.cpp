@@ -31,7 +31,7 @@ String & String::operator = (const char * s)
     return (*this);
 }
 
-String & String::operator = (String s)
+String & String::operator = (String & s)
 {
     if(this == &s) return (*this);
     this->swap(s);
