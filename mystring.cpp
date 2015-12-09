@@ -73,16 +73,16 @@ String & String::operator += (const char * s)
     return (*this);
 }
 
-const String String::operator + (const String & s) const
+const String operator + (const String & lhs, const String & rhs)
 {
-    String tmp(*this);
-    tmp+=s;
+    String tmp(lhs);
+    tmp+=rhs;
     return tmp;
 }
 
-const String String::operator + (const char * s) const
+const String operator + (const String & lhs, const char * s)
 {
-    String tmp(*this);
+    String tmp(lhs);
     tmp+=s;
     return tmp;
 }

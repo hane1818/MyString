@@ -26,13 +26,12 @@ public:
     String & operator = (const char * s);
     String & operator += (const String & s);
     String & operator += (const char * s);
-    const String operator + (const String & s) const;
-    const String operator + (const char * s) const;
 private:
     char *str_=nullptr;
     std::size_t size_=0, capacity_=0;
 };
-
+const String operator + (const String & lhs, const String & rhs);
+const String operator + (const String & lhs, const char * s);
 std::ostream & operator << (std::ostream & os, const String & s);
 std::istream & operator >> (std::istream & is, String & s);
 
