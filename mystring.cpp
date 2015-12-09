@@ -43,6 +43,29 @@ String & String::operator = (const char * s)
     return (*this);
 }
 
+String & String::operator += (const String & s)
+{
+    if(capacity_ > (size_+s.size_+1))
+    {
+        strcat(str_, s.str_);
+        size_+=s.size_;
+    }
+    else
+    {
+        char *tmp = new char[size_+s.size_+1];
+        if(tmp)
+        {
+            strcpy(tmp, str_);
+            delete str_;
+            str_=tmp;
+            strcat(str_, s.str_);
+            size_+=s.size_;
+            capacity_=size_;
+        }
+    }
+    return (*this);
+}
+
 std::ostream & operator << (std::ostream & os, const String & s)
 {
     if(s.str_)
