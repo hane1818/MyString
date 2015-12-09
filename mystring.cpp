@@ -66,7 +66,21 @@ String & String::operator += (const String & s)
     return (*this);
 }
 
+String & String::operator += (const char * s)
+{
+    String tmp(s);
+    (*this)+=tmp;
+    return (*this);
+}
+
 const String String::operator + (const String & s) const
+{
+    String tmp(*this);
+    tmp+=s;
+    return tmp;
+}
+
+const String String::operator + (const char * s) const
 {
     String tmp(*this);
     tmp+=s;

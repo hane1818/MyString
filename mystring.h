@@ -15,6 +15,7 @@ public:
     String(const String & s):String(s.str_, s.size_) {};
     ~String() { delete [] str_; };
     std::size_t size() { return size_; }
+    std::size_t capacity() { return capacity_; }
     const char * c_str() { return str_; }
     void clear() { size_=0; str_[0]='\0'; }
     void swap(String & other);
@@ -24,7 +25,9 @@ public:
     String & operator = (String & s);
     String & operator = (const char * s);
     String & operator += (const String & s);
+    String & operator += (const char * s);
     const String operator + (const String & s) const;
+    const String operator + (const char * s) const;
 private:
     char *str_=nullptr;
     std::size_t size_=0, capacity_=0;
