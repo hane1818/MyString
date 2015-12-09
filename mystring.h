@@ -14,7 +14,8 @@ friend std::istream & operator >> (std::istream & is, String & s);
 public:
     String()=default;
     String(const char * s, int size=-1);
-    String(const String & s):String(s.str_, s.size_) {};
+    String(const String & str):String(str.str_, str.size_) {};
+    String(char c);
     ~String() { delete [] str_; };
     std::size_t size() { return size_; }
     std::size_t capacity() { return capacity_; }

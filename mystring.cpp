@@ -11,6 +11,17 @@ String::String(const char * s, int size)
     strcpy(str_, s);
 }
 
+String::String(char c)
+{
+    str_=new char[2];
+    if(str_)
+    {
+        str_[size_++]=c;
+        str_[size_]='\0';
+        capacity_=size_;
+    }
+}
+
 void String::swap(String & other)
 {
     using std::swap;
