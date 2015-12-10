@@ -8,7 +8,10 @@ String::String(const char * s, int size)
     if(str_)
     {
         size_=size;
-        strcpy(str_, s);
+        for(int i=0;i<size_;i++)
+        {
+            str_[i]=s[i];
+        }
         capacity_=size_;
     }
     else
@@ -49,7 +52,10 @@ String & String::operator += (const String & str)
         char *tmp = new char[size_+str.size_+1];
         if(tmp)
         {
-            strcpy(tmp, str_);
+            for(int i=0;i<size_;i++)
+            {
+                tmp[i]=str_[i];
+            }
             std::swap(tmp, str_);
             delete [] tmp;
             strcat(str_, str.str_);
@@ -82,10 +88,19 @@ const String operator + (const String & lhs, char rhs)
 
 std::ostream & operator << (std::ostream & os, const String & s)
 {
-    if(s.str_)
-        os << s.str_;
-    else
-        os << "\0";
+    for(int i=0;i<s.size_;i++)
+    {
+        os << s[i];
+    }
+
     return os;
 }
 
+std::istream & operator >> (std::istream & is, String & s)
+{
+    char c;
+    while(!(isspace(c=is.get())||is.eof()))
+        s+=c;
+
+    return is;
+}
