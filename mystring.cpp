@@ -28,7 +28,14 @@ void String::swap(String & other)
 
 String & String::operator = (String str)
 {
-    this->swap(str);
+    if(str.size()>capacity_)
+        this->swap(str);
+    else
+    {
+        for(auto i=0;i<=str.size();i++)
+            str_[i]=str[i];
+        size_=str.size();
+    }
     return (*this);
 }
 
