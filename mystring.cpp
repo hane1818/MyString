@@ -15,20 +15,6 @@ String::String(const char * s, int size)
         size_=0;
 }
 
-String::String(char c)
-{
-    if(c!='\0')
-    {
-        str_=new char[2];
-        if(str_)
-        {
-            str_[size_++]=c;
-            str_[size_]='\0';
-            capacity_=size_;
-        }
-    }
-}
-
 void String::swap(String & other)
 {
     using std::swap;
@@ -37,43 +23,16 @@ void String::swap(String & other)
     swap(capacity_, other.capacity_);
 }
 
-String & String::operator = (String & str)
+String & String::operator = (String str)
 {
-    if(this == &str) return (*this);
     this->swap(str);
-    return (*this);
-}
-
-String & String::operator = (const char * s)
-{
-    std::size_t len=strlen(s);
-    if(len>capacity_)
-    {
-        String tmp(s);
-        this->swap(tmp);
-    }
-    else
-    {
-        strcpy(str_,s);
-        size_=len;
-    }
-
     return (*this);
 }
 
 String & String::operator = (char c)
 {
-    if(!capacity_)
-    {
-        String tmp(c);
-        this->swap(tmp);
-    }
-    else
-    {
-        clear();
-        str_[size_++]=c;
-        str_[size_]='\0';
-    }
+    char tmp[2]={c,'\0'};
+    (*this)=tmp;
 
     return (*this);
 }

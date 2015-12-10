@@ -14,7 +14,6 @@ public:
     String()=default;
     String(const char * s, int size=-1);
     String(const String & str):String(str.str_, str.size_) {};
-    String(char c);
     ~String() { delete [] str_; };
     std::size_t size() { return size_; }
     std::size_t capacity() { return capacity_; }
@@ -24,8 +23,7 @@ public:
     const char & operator [] (std::size_t i) const { return str_[i]; }
     char & operator [] (std::size_t i) {
         return const_cast<char &>(static_cast<const String &>(*this)[i]); }
-    String & operator = (String & str);
-    String & operator = (const char * s);
+    String & operator = (String str);
     String & operator = (char c);
     String & operator += (const String & str);
     String & operator += (const char * s);
