@@ -145,20 +145,3 @@ std::ostream & operator << (std::ostream & os, const String & s)
     return os;
 }
 
-std::istream & operator >> (std::istream & is, String & s)
-{
-    char tmp[]={'\0'};
-    is >> tmp;
-    s = tmp;
-    /*if(s.capacity_>=strlen(tmp))
-        strcpy(s.str_, tmp);
-    else
-    {
-        delete [] s.str_;
-        s.str_=new char [strlen(tmp)];
-        strcpy(s.str_, tmp);
-        //s.capacity_=strlen(tmp);
-    }
-    s.size_=strlen(tmp);*/
-    return is;
-}

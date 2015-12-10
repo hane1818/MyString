@@ -9,7 +9,6 @@ class String
 friend bool operator < (const String & lhs, const String & rhs);
 friend bool operator == (const String & lhs, const String & rhs);
 friend std::ostream & operator << (std::ostream & os, const String & s);
-friend std::istream & operator >> (std::istream & is, String & s);
 
 public:
     String()=default;
