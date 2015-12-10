@@ -8,7 +8,7 @@ String::String(const char * s, int size)
     if(str_)
     {
         size_=size;
-        for(int i=0;i<size_;i++)
+        for(std::size_t i=0;i<size_;i++)
         {
             str_[i]=s[i];
         }
@@ -32,7 +32,7 @@ String & String::operator = (String str)
         this->swap(str);
     else
     {
-        for(auto i=0;i<=str.size();i++)
+        for(std::size_t i=0;i<=str.size();i++)
             str_[i]=str[i];
         size_=str.size();
     }
@@ -59,13 +59,13 @@ String & String::operator += (const String & str)
         char *tmp = new char[size_+str.size_+1];
         if(tmp)
         {
-            for(int i=0;i<size_;i++)
+            for(std::size_t i=0;i<size_;i++)
             {
                 tmp[i]=(*this)[i];
             }
             std::swap(tmp, this->str_);
             delete [] tmp;
-            for(int i=size_; i<=size_+str.size_;i++)
+            for(std::size_t i=size_; i<=size_+str.size_;i++)
             {
                 (*this)[i]=str[i-size_];
             }
@@ -98,7 +98,7 @@ const String operator + (const String & lhs, char rhs)
 
 std::ostream & operator << (std::ostream & os, const String & s)
 {
-    for(int i=0;i<s.size();i++)
+    for(std::size_t i=0;i<s.size();i++)
     {
         os << s[i];
     }
