@@ -4,7 +4,7 @@ String::String(const char * s, int size)
 {
     if(size == -1)
         size=strlen(s);
-    str_=new char[size+1];
+    str_=new (std::nothrow) char[size+1];
     if(str_)
     {
         size_=size;
@@ -56,7 +56,7 @@ String & String::operator += (const String & str)
     }
     else
     {
-        char *tmp = new char[size_+str.size_+1];
+        char *tmp = new (std::nothrow) char[size_+str.size_+1];
         if(tmp)
         {
             for(std::size_t i=0;i<size_;i++)
@@ -79,7 +79,6 @@ String & String::operator += (const String & str)
 String & String::operator += (char c)
 {
     char tmp[]{c,'\0'};
-    std::cout << tmp << std::endl;
     (*this)+=tmp;
     return (*this);
 }
