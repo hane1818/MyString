@@ -34,7 +34,7 @@ String & String::operator = (String str)
 
 String & String::operator = (char c)
 {
-    char tmp[]={c,'\0'};
+    char tmp[]{c,'\0'};
     (*this)=tmp;
 
     return (*this);
@@ -42,7 +42,7 @@ String & String::operator = (char c)
 
 String & String::operator += (const String & str)
 {
-    if(capacity_ > (size_+str.size_+1))
+    if(capacity_ >= (size_+str.size_))
     {
         strcat(str_, str.str_);
         size_+=str.size_;
@@ -54,13 +54,16 @@ String & String::operator += (const String & str)
         {
             for(int i=0;i<size_;i++)
             {
-                tmp[i]=str_[i];
+                tmp[i]=(*this)[i];
             }
-            std::swap(tmp, str_);
+            std::swap(tmp, this->str_);
             delete [] tmp;
-            strcat(str_, str.str_);
-            size_+=str.size_;
-            capacity_=size_;
+            for(int i=size_; i<=size_+str.size_;i++)
+            {
+                (*this)[i]=str[i-size_];
+            }
+            this->size_+=str.size_;
+            this->capacity_=size_;
         }
     }
     return (*this);
@@ -68,7 +71,8 @@ String & String::operator += (const String & str)
 
 String & String::operator += (char c)
 {
-    char tmp[]={c,'\0'};
+    char tmp[]{c,'\0'};
+    std::cout << tmp << std::endl;
     (*this)+=tmp;
     return (*this);
 }
@@ -82,8 +86,7 @@ const String operator + (const String & lhs, const String & rhs)
 const String operator + (const String & lhs, char rhs)
 {
     String tmp(lhs);
-    tmp+=rhs;
-    return tmp;
+    return tmp+=rhs;
 }
 
 std::ostream & operator << (std::ostream & os, const String & s)
