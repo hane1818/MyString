@@ -8,16 +8,15 @@ class String
 {
 friend bool operator < (const String & lhs, const String & rhs);
 friend bool operator == (const String & lhs, const String & rhs);
-friend std::ostream & operator << (std::ostream & os, const String & s);
 
 public:
     String()=default;
     String(const char * s, int size=-1);
     String(const String & str):String(str.str_, str.size_) {};
     ~String() { delete [] str_; };
-    std::size_t size() { return size_; }
-    std::size_t capacity() { return capacity_; }
-    const char * c_str() { return str_; }
+    std::size_t size() const { return size_; }
+    std::size_t capacity() const { return capacity_; }
+    const char * c_str() const { return str_; }
     void clear() { size_=0; str_[0]='\0'; }
     void swap(String & other);
     const char & operator [] (std::size_t i) const { return str_[i]; }

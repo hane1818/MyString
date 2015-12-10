@@ -88,7 +88,7 @@ const String operator + (const String & lhs, char rhs)
 
 std::ostream & operator << (std::ostream & os, const String & s)
 {
-    for(int i=0;i<s.size_;i++)
+    for(int i=0;i<s.size();i++)
     {
         os << s[i];
     }
