@@ -126,12 +126,12 @@ int main()
                         for(int i=0;i<arr[ind-1].size();i++) cout << i+1;
                         cout << " (index)" << endl
                              << "\"" << arr[ind-1] << "\"" << endl << endl
-                             << "Please input the character index of the string to modify(0 to leave)...>";
+                             << "Please input the character index of the string to change(0 to leave)...>";
                         int i;
                         cin >> i;
                         if(i==0) break;
                         if(i>now_arr) { cout << "Out of range" << endl; break; }
-                        cout << "Please input the new character(no space)...>";
+                        cout << "Please input the new character to replace '" << arr[ind-1][i-1] << "' (no space)...>";
                         cin >> c;
                         arr[ind-1][i-1]=c;
                         cout << endl << "The result after changing is \"" << arr[ind-1] << "\"" << endl;
