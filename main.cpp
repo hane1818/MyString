@@ -47,8 +47,15 @@ int main()
                     String s;
                     cin.get();
                     cin >> s;
-                    arr[now_arr++]=s;
-                    cout << endl << "New data is \"" << s << "\", data size is " << s.size() << endl;
+                    if(s.c_str())
+                    {
+                        arr[now_arr++]=s;
+                        cout << endl << "New data is \"" << s << "\", data size is " << s.size() << endl;
+                    }
+                    else
+                    {
+                        cout << endl << "No data input." << endl;
+                    }
                 }
                 else
                 {
@@ -63,11 +70,13 @@ int main()
                 int ind;
                 cin >> ind;
                 if(ind==0) break;
+                if(ind>now_arr) { cout << "Out of range" << endl; break; }
                 cout << "What do you want to do with this data?" << endl << endl
                      << " 1) replace by a new string(at most 100 characters)" << endl
                      << " 2) replace by a character" << endl
                      << " 3) append a new string(at most 100 characters)" << endl
-                     << " 4) append a character" << endl << endl
+                     << " 4) append a character" << endl
+                     << " 5) change one character of string" << endl
                      << "Input your choice(0 to leave)...>";
                 int opt;
                 cin >> opt;
@@ -111,6 +120,23 @@ int main()
                     if(op=='y'||op=='Y')
                         arr[ind-1]+=c;
                     break;
+                case 5:
+                    {
+                        cout << endl << " ";
+                        for(int i=0;i<arr[ind-1].size();i++) cout << i+1;
+                        cout << " (index)" << endl
+                             << "\"" << arr[ind-1] << "\"" << endl << endl
+                             << "Please input the character index of the string to modify(0 to leave)...>";
+                        int i;
+                        cin >> i;
+                        if(i==0) break;
+                        if(i>now_arr) { cout << "Out of range" << endl; break; }
+                        cout << "Please input the new character(no space)...>";
+                        cin >> c;
+                        arr[ind-1][i-1]=c;
+                        cout << endl << "The result after changing is \"" << arr[ind-1] << "\"" << endl;
+                        break;
+                    }
                 default:
                     cout << "Invalid option." << endl;
                     break;
@@ -124,6 +150,7 @@ int main()
                 int opt;
                 cin >> opt;
                 if(opt==0) break;
+                if(opt>now_arr) { cout << "Out of range" << endl; break; }
                 arr[opt-1].clear();
                 for(size_t i=opt;i<now_arr;++i)
                     arr[i-1].swap(arr[i]);
@@ -138,6 +165,7 @@ int main()
                 cin >> a;
                 if(a==0) break;
                 cin >> b;
+                if(a>now_arr||b>now_arr) { cout << "Out of range" << endl; break; }
                 a-=1; b-=1;
                 if(arr[a]>=arr[b])
                     cout << "\"" << arr[a] << "\"" << " is not less than " << "\"" << arr[b] << "\"" << endl;
@@ -166,6 +194,7 @@ int main()
             cout << "Invalid option" << endl;
             break;
         }
+        cout << endl;
         system("pause");
         system("cls");
     }
