@@ -1,8 +1,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <algorithm>
+#include <limits>
 #include "mystring.h"
-#include <string>
 
 using namespace std;
 
@@ -11,7 +11,7 @@ void PrintDb(String * db, size_t sz)
     cout << endl;
     for(size_t i=0; i<sz;++i)
     {
-        cout << ' ' << i+1 << ". " << db[i] << endl;
+        cout << '[' << i+1 << "] " << db[i] << endl;
     }
     cout << endl;
 }
@@ -67,9 +67,9 @@ int main()
             {
                 PrintDb(arr, now_arr);
                 cout << "Please choose which data to modify(input data number, 0 to leave)...>";
-                int ind;
+                size_t ind;
                 cin >> ind;
-                if(ind==0) break;
+                if(!ind) break;
                 if(ind>now_arr) { cout << "Out of range" << endl; break; }
                 cout << "What do you want to do with this data?" << endl << endl
                      << " 1) replace by a new string(at most 100 characters)" << endl
@@ -87,52 +87,61 @@ int main()
                 case 1:
                     cout << endl << "Please input a string(at most 100 characters)...>";
                     cin >> str;
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
                     cout << endl << "\"" << arr[ind-1] << "\" will be replaced by \"" << str << "\"" << endl
                          << "Are you sure to modify data(y/N)...>";
                     cin >> op;
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
                     if(op=='y'||op=='Y')
                         arr[ind-1]=str;
                     break;
                 case 2:
                     cout << endl << "Please input a character...>";
                     cin >> c;
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
                     cout << endl << "\"" << arr[ind-1] << "\" will be replaced by '" << c << "'" << endl
                          << "Are you sure to modify data(y/N)...>";
                     cin >> op;
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
                     if(op=='y'||op=='Y')
                         arr[ind-1]=c;
                     break;
                 case 3:
                     cout << endl << "Please input a string(at most 100 characters)...>";
                     cin >> str;
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
                     cout << endl << "The result after appending is \"" << arr[ind-1]+str << "\"" << endl
                          << "Are you sure to modify data(y/N)...>";
                     cin >> op;
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
                     if(op=='y'||op=='Y')
                         arr[ind-1]+=str;
                     break;
                 case 4:
                     cout << endl << "Please input a character...>";
                     cin >> c;
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
                     cout << endl << "The result after appending is \"" << arr[ind-1]+c << "\"" << endl
                          << "Are you sure to modify data(y/N)...>";
                     cin >> op;
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
                     if(op=='y'||op=='Y')
                         arr[ind-1]+=c;
                     break;
                 case 5:
                     {
                         cout << endl << " ";
-                        for(int i=0;i<arr[ind-1].size();i++) cout << i+1;
+                        for(size_t i=0;i<arr[ind-1].size();i++) cout << i+1;
                         cout << " (index)" << endl
                              << "\"" << arr[ind-1] << "\"" << endl << endl
                              << "Please input the character index of the string to change(0 to leave)...>";
-                        int i;
+                        size_t i;
                         cin >> i;
-                        if(i==0) break;
+                        if(!i) break;
                         if(i>now_arr) { cout << "Out of range" << endl; break; }
                         cout << "Please input the new character to replace '" << arr[ind-1][i-1] << "' (no space)...>";
                         cin >> c;
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
                         arr[ind-1][i-1]=c;
                         cout << endl << "The result after changing is \"" << arr[ind-1] << "\"" << endl;
                         break;
@@ -147,9 +156,9 @@ int main()
             {
                 PrintDb(arr, now_arr);
                 cout << "Please choose which data to remove(input data number, 0 to leave)...>";
-                int opt;
+                size_t opt;
                 cin >> opt;
-                if(opt==0) break;
+                if(!opt) break;
                 if(opt>now_arr) { cout << "Out of range" << endl; break; }
                 arr[opt-1].clear();
                 for(size_t i=opt;i<now_arr;++i)
@@ -161,9 +170,9 @@ int main()
             {
                 PrintDb(arr, now_arr);
                 cout << "Please choose two data to compare(input two data number, 0 to leave)...>";
-                int a, b;
+                size_t a, b;
                 cin >> a;
-                if(a==0) break;
+                if(!a) break;
                 cin >> b;
                 if(a>now_arr||b>now_arr) { cout << "Out of range" << endl; break; }
                 a-=1; b-=1;

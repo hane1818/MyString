@@ -18,8 +18,7 @@ public:
     const char * c_str() const { return str_; }
     void clear() { size_=0; str_[0]='\0'; }
     void swap(String & other);
-    const char & operator [] (size_t i) const
-        { return str_[i]; }
+    const char & operator [] (size_t i) const { return str_[i]; }
     char & operator [] (size_t i) {
         return const_cast<char &>(static_cast<const String &>(*this)[i]); }
     String & operator = (String str);

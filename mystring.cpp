@@ -123,7 +123,7 @@ void String::allocate_str_(const char * s)
     this->str_=new (std::nothrow) char[(this->size_)+1];
     if(this->str_)
     {
-        for(std::size_t i=0;i<this->size_;i++)
+        for(std::size_t i=0;i<=this->size_;i++)
         {
             this->str_[i]=s[i];
         }
