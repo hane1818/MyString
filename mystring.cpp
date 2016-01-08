@@ -85,7 +85,7 @@ const String operator + (const String & lhs, const String & rhs)
     String tmp(lhs);
     return tmp+=rhs;
 }
-
+/*
 const String operator + (const String & lhs, char rhs)
 {
     String tmp(lhs);
@@ -97,7 +97,7 @@ const String operator + (char lhs, const String & rhs)
     char tmp[]{lhs, '\0'};
     return tmp+rhs;
 }
-
+*/
 std::ostream & operator << (std::ostream & os, const String & s)
 {
     for(std::size_t i=0;i<s.size();i++)
